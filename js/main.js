@@ -64,3 +64,24 @@ if (scrollBtn) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 }
+
+// Product Search
+const searchInput = document.getElementById('productSearch');
+const productItems = document.querySelectorAll('.product-item');
+
+if (searchInput) {
+    searchInput.addEventListener('keyup', function() {
+        const searchTerm = this.value.toLowerCase().trim();
+        
+        productItems.forEach(item => {
+            const productName = item.querySelector('h5')?.textContent.toLowerCase() || '';
+            const productDesc = item.querySelector('p')?.textContent.toLowerCase() || '';
+            
+            if (productName.includes(searchTerm) || productDesc.includes(searchTerm)) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+}
