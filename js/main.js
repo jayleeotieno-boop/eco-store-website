@@ -85,3 +85,29 @@ if (searchInput) {
         });
     });
 }
+
+// Cart Sidebar Toggle
+const cartToggle = document.getElementById('cartToggle');
+const cartSidebar = document.getElementById('cartSidebar');
+const closeCartBtn = document.getElementById('closeCartBtn');
+
+if (cartToggle) {
+    cartToggle.addEventListener('click', () => {
+        cartSidebar.classList.toggle('open');
+    });
+}
+
+if (closeCartBtn) {
+    closeCartBtn.addEventListener('click', () => {
+        cartSidebar.classList.remove('open');
+    });
+}
+
+// Close cart when clicking outside
+document.addEventListener('click', (e) => {
+    if (cartSidebar && cartSidebar.classList.contains('open')) {
+        if (!cartSidebar.contains(e.target) && e.target !== cartToggle) {
+            cartSidebar.classList.remove('open');
+        }
+    }
+});
