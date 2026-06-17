@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - GreenLife Eco Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="fas fa-leaf me-2"></i>GreenLife Eco</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="products.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="mt-5 pt-4">
+        <div class="container my-5">
+            <h1 class="text-center mb-4">Our Eco-Friendly Products</h1>
+            <p class="text-center mb-5">Shop our curated collection of sustainable alternatives</p>
+
+            <!-- Filter Buttons (JavaScript Feature #1 - Filterable Gallery) -->
+            <div class="filter-buttons text-center mb-4">
+                <button class="btn btn-outline-success filter-btn active" data-filter="all">All</button>
+                <button class="btn btn-outline-success filter-btn" data-filter="kitchen">Kitchen</button>
+                <button class="btn btn-outline-success filter-btn" data-filter="bathroom">Bathroom</button>
+                <button class="btn btn-outline-success filter-btn" data-filter="on-the-go">On The Go</button>
+            </div>
+
+            <div class="row g-4" id="productContainer">
+                <div class="col-md-4 product-item" data-category="bathroom">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=400" alt="Bamboo Toothbrush" class="product-img">
+                        <div class="p-3">
+                            <h5>Bamboo Toothbrush</h5>
+                            <p class="text-muted">Biodegradable bamboo handle, BPA-free bristles</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="h5 text-success">$4.99</span>
+                                <button class="btn btn-success btn-sm add-to-cart" data-product="Bamboo Toothbrush" data-price="4.99">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product-item" data-category="on-the-go">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1610707219829-5b3f8c1d5f2e?w=400" alt="Reusable Shopping Bags" class="product-img">
+                        <div class="p-3">
+                            <h5>Reusable Shopping Bags (Set of 3)</h5>
+                            <p class="text-muted">Cotton mesh, machine washable</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="h5 text-success">$12.99</span>
+                                <button class="btn btn-success btn-sm add-to-cart" data-product="Reusable Shopping Bags" data-price="12.99">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product-item" data-category="on-the-go">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1583947583497-9b8c3b8b3f1e?w=400" alt="Water Bottle" class="product-img">
+                        <div class="p-3">
+                            <h5>Stainless Steel Water Bottle</h5>
+                            <p class="text-muted">Keeps drinks cold for 24 hours</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="h5 text-success">$24.99</span>
+                                <button class="btn btn-success btn-sm add-to-cart" data-product="Stainless Steel Water Bottle" data-price="24.99">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product-item" data-category="kitchen">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1618424181497-157f25b6ddd5?w=400" alt="Beeswax Wraps" class="product-img">
+                        <div class="p-3">
+                            <h5>Beeswax Food Wraps</h5>
+                            <p class="text-muted">Reusable alternative to plastic wrap, set of 3</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="h5 text-success">$15.99</span>
+                                <button class="btn btn-success btn-sm add-to-cart" data-product="Beeswax Food Wraps" data-price="15.99">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product-item" data-category="bathroom">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1612285275242-8c2e5b75e96d?w=400" alt="Shampoo Bar" class="product-img">
+                        <div class="p-3">
+                            <h5>Solid Shampoo Bar</h5>
+                            <p class="text-muted">Zero waste, plastic-free hair care</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="h5 text-success">$9.99</span>
+                                <button class="btn btn-success btn-sm add-to-cart" data-product="Solid Shampoo Bar" data-price="9.99">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product-item" data-category="kitchen">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1581553673739-8d2b6e5c7b8f?w=400" alt="Compostable Sponges" class="product-img">
+                        <div class="p-3">
+                            <h5>Compostable Sponges</h5>
+                            <p class="text-muted">6-pack, made from loofah and cellulose</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="h5 text-success">$7.99</span>
+                                <button class="btn btn-success btn-sm add-to-cart" data-product="Compostable Sponges" data-price="7.99">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shopping Cart Sidebar (JavaScript Feature #2) -->
+            <div class="cart-sidebar" id="cartSidebar">
+                <div class="cart-header">
+                    <h5><i class="fas fa-shopping-cart"></i> Your Cart</h5>
+                    <button class="btn-close" id="closeCart"></button>
+                </div>
+                <div id="cartItems"></div>
+                <div class="cart-footer">
+                    <strong>Total: $<span id="cartTotal">0.00</span></strong>
+                    <button class="btn btn-success w-100 mt-2" id="checkoutBtn">Checkout</button>
+                </div>
+            </div>
+            <button class="cart-toggle" id="cartToggle"><i class="fas fa-shopping-cart"></i> <span id="cartCount">0</span></button>
+        </div>
+    </main>
+
+    <footer class="footer mt-auto">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5><i class="fas fa-leaf me-2"></i>GreenLife Eco</h5>
+                    <p>Making sustainable living accessible for everyone since 2020.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html" class="text-white text-decoration-none">About Us</a></li>
+                        <li><a href="products.html" class="text-white text-decoration-none">Products</a></li>
+                        <li><a href="contact.html" class="text-white text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Follow Us</h5>
+                    <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                </div>
+            </div>
+            <hr class="bg-white">
+            <div class="text-center py-3">
+                <small>&copy; 2026 GreenLife Eco Store. All rights reserved.</small>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
