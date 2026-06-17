@@ -20,4 +20,26 @@ if (darkModeToggle) {
             this.textContent = ' Dark Mode';
         }
     });
+
+    // Loading Spinner
+function showLoading() {
+    const spinner = document.getElementById('loadingSpinner');
+    if (spinner) spinner.style.display = 'block';
+}
+
+function hideLoading() {
+    const spinner = document.getElementById('loadingSpinner');
+    if (spinner) spinner.style.display = 'none';
+}
+
+// Show spinner when filtering products
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        showLoading();
+        setTimeout(() => {
+            // Filter logic here
+            hideLoading();
+        }, 500);
+    });
+});
 }
