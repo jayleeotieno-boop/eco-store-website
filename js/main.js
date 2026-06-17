@@ -111,3 +111,73 @@ document.addEventListener('click', (e) => {
         }
     }
 });
+
+// Update cart display with quantity controls
+function renderCart() {
+    const cartItemsList = document.getElementById('cartItemsList');
+    const cartTotalPrice = document.getElementById('cartTotalPrice');
+    const cartCountBadge = document.getElementById('cartCountBadge');
+    
+    if (!cartItemsList) return;
+    
+    if (cart.length === 0) {
+        cartItemsList.innerHTML = '<p class="text-muted text-center">Cart is empty</p>';
+        if (cartTotalPrice) cartTotalPrice.textContent = '$0.00';
+        if (cartCountBadge) cartCountBadge.textContent = '0';
+        return;
+    }
+    
+    let html = '';
+    let total = 0;
+    let itemCount = 0;
+    
+    cart.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        itemCount += item.quantity;
+        
+        html += `
+            <div class="cart-item">
+                <div>
+                    <strong>${item.name}</strong>
+                    <div class="quantity-controls">
+                        <button onclick="updateQuantity(${index}, -1)" class="btn btn-sm btn-outline-secondary">-</button>
+                        <span class="mx-2">${item.quantity}</span>
+                        <button onclick="updateQuantity(${index}, 1)" class="btn btn-sm btn-outline-secondary">+</button>
+                        <button onclick="removeItem(${index})" class="btn btn-sm btn-danger ms-2">×</button>
+                    </div>
+                </div>
+                <div class="text-success">$${itemTotal.toFixed(2)}</div>
+            </div>
+        `;
+    });
+    
+    cartItemsList.innerHTML = html;
+    if (cartTotalPrice) cartTotalPrice.textContent = `$${total.toFixed(2)}`;
+    if (cartCountBadge) cartCountBadge.textContent = itemCount;
+    
+    // Save to localStorage
+    localStorage.setItem('ecoCart', JSON.stringify(cart));
+}
+
+// Update quantity
+function updateQuantity(index, change) {
+    cart[index].quantity += change;
+    if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+    }
+    renderCart();
+}
+
+// Remove item
+function removeItem(index) {
+    cart.splice(index, 1);
+    renderCart();
+}
+
+// Clear cart
+function clearCart() {
+    cart = [];
+    renderCart();
+    if (cartSidebar) cartSidebar.classList.remove('open');
+}
