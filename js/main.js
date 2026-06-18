@@ -392,3 +392,17 @@ document.addEventListener('click', (e) => {
         }
     }
 });
+
+// Scroll Progress Bar
+const progressBar = document.getElementById('progressBar');
+
+window.addEventListener('scroll', function() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
+    
+    if (progressBar) {
+        progressBar.style.width = progress + '%';
+        progressBar.style.opacity = progress > 0 ? '1' : '0';
+    }
+});
