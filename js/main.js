@@ -258,3 +258,38 @@ const statsSection = document.querySelector('.stats-section');
 if (statsSection) {
     observer.observe(statsSection);
 }
+
+// Real-time form validation
+function validateField(input, errorId) {
+    const error = document.getElementById(errorId);
+    
+    if (input.value.trim() === '') {
+        input.classList.add('is-invalid');
+        if (error) error.textContent = 'This field is required';
+        return false;
+    } else if (input.type === 'email' && !input.value.includes('@')) {
+        input.classList.add('is-invalid');
+        if (error) error.textContent = 'Please enter a valid email';
+        return false;
+    } else {
+        input.classList.remove('is-invalid');
+        input.classList.add('is-valid');
+        if (error) error.textContent = '';
+        return true;
+    }
+}
+
+// Add real-time validation to contact form
+document.querySelectorAll('.form-control').forEach(input => {
+    input.addEventListener('blur', function() {
+        const errorId = this.id + 'Error';
+        validateField(this, errorId);
+    });
+    
+    input.addEventListener('input', function() {
+        const errorId = this.id + 'Error';
+        if (this.classList.contains('is-invalid')) {
+            validateField(this, errorId);
+        }
+    });
+});
