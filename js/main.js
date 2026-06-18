@@ -368,3 +368,27 @@ document.querySelectorAll('.gallery-img, .product-img').forEach(img => {
         lightbox.style.display = 'flex';
     });
 });
+
+// Newsletter Popup
+function showNewsletterPopup() {
+    const popup = document.getElementById('newsletterPopup');
+    if (popup) popup.style.display = 'flex';
+}
+
+function closeNewsletterPopup() {
+    const popup = document.getElementById('newsletterPopup');
+    if (popup) popup.style.display = 'none';
+}
+
+// Show popup after 5 seconds
+setTimeout(showNewsletterPopup, 5000);
+
+// Close on click outside
+document.addEventListener('click', (e) => {
+    const popup = document.getElementById('newsletterPopup');
+    if (popup && popup.style.display === 'flex') {
+        if (!popup.querySelector('.popup-content').contains(e.target)) {
+            closeNewsletterPopup();
+        }
+    }
+});
