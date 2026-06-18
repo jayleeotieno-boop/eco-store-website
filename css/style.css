@@ -236,3 +236,18 @@ body.dark-mode .form-control {
     background: #d32f2f;
 }
 
+/* Responsive Table */
+@media (max-width: 768px) {
+    .table-responsive {
+        overflow-x: auto;
+        display: block;
+        width: 100%;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .table-responsive table {
+        width: 100%;
+        min-width: 600px;
+    }
+}
+
