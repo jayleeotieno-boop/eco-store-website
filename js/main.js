@@ -321,3 +321,50 @@ function filterBlogPosts() {
 
 if (blogSearch) blogSearch.addEventListener('keyup', filterBlogPosts);
 if (blogFilter) blogFilter.addEventListener('change', filterBlogPosts);
+
+// Image Lightbox Gallery
+function createLightbox() {
+    const lightbox = document.createElement('div');
+    lightbox.id = 'lightbox';
+    lightbox.style.cssText = `
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.9);
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    `;
+    
+    const img = document.createElement('img');
+    img.id = 'lightboxImg';
+    img.style.cssText = `
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+    `;
+    
+    lightbox.appendChild(img);
+    document.body.appendChild(lightbox);
+    
+    lightbox.addEventListener('click', () => {
+        lightbox.style.display = 'none';
+    });
+    
+    return lightbox;
+}
+
+// Open lightbox on image click
+document.querySelectorAll('.gallery-img, .product-img').forEach(img => {
+    img.addEventListener('click', function() {
+        const lightbox = document.getElementById('lightbox') || createLightbox();
+        const lightboxImg = document.getElementById('lightboxImg');
+        
+        lightboxImg.src = this.src;
+        lightbox.style.display = 'flex';
+    });
+});
