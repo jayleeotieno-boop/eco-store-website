@@ -26,6 +26,30 @@
                placeholder=" Search products...">
     </div>
 </div>
+
+<!-- Shopping Cart Sidebar -->
+<div id="cartSidebar" class="cart-sidebar">
+    <div class="cart-header">
+        <h5>🛒 Your Cart</h5>
+        <button id="closeCartBtn" class="btn-close"></button>
+    </div>
+    <div id="cartItemsList" class="cart-items"></div>
+    <div class="cart-footer">
+        <div class="d-flex justify-content-between">
+            <span>Total:</span>
+            <span id="cartTotalPrice">$0.00</span>
+        </div>
+        <button id="checkoutBtn" class="btn btn-success w-100 mt-2">Checkout</button>
+    </div>
+</div>
+
+<!-- Cart Toggle Button -->
+<button id="cartToggle" class="cart-toggle">
+    🛒 <span id="cartCountBadge">0</span>
+</button>
     <button id="scrollTopBtn" title="Back to Top">↑</button>
 </body>
+
+<div id="toastContainer" class="toast-container"></div>
+
 </html>
