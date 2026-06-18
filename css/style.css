@@ -251,3 +251,9 @@ body.dark-mode .form-control {
     }
 }
 
+/* Breadcrumb */
+.breadcrumb {
+    background: transparent;
+    padding: 10px 0;
+}
+
