@@ -406,3 +406,9 @@ window.addEventListener('scroll', function() {
         progressBar.style.opacity = progress > 0 ? '1' : '0';
     }
 });
+
+// FAB - Scroll to Top
+document.querySelector('.fab[title="Top"]')?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
