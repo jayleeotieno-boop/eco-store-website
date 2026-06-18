@@ -41,4 +41,53 @@
     <button class="fab" title="Shop" onclick="window.location.href='products.html'">🛒</button>
 </div>
 
+<!-- Product Carousel -->
+<section class="container my-5">
+    <h2 class="text-center mb-4">Featured Products</h2>
+    <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=300" 
+                                 class="card-img-top" alt="Bamboo Toothbrush">
+                            <div class="card-body">
+                                <h5>Bamboo Toothbrush</h5>
+                                <p class="text-success">$4.99</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img src="https://images.unsplash.com/photo-1610707219829-5b3f8c1d5f2e?w=300" 
+                                 class="card-img-top" alt="Reusable Bags">
+                            <div class="card-body">
+                                <h5>Reusable Shopping Bags</h5>
+                                <p class="text-success">$12.99</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img src="https://images.unsplash.com/photo-1583947583497-9b8c3b8b3f1e?w=300" 
+                                 class="card-img-top" alt="Water Bottle">
+                            <div class="card-body">
+                                <h5>Stainless Steel Bottle</h5>
+                                <p class="text-success">$24.99</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+</section>
+
 </html>
