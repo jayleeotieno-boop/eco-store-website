@@ -293,3 +293,31 @@ document.querySelectorAll('.form-control').forEach(input => {
         }
     });
 });
+
+// Blog Search and Filter
+const blogSearch = document.getElementById('blogSearch');
+const blogFilter = document.getElementById('blogFilter');
+const blogPosts = document.querySelectorAll('.blog-post');
+
+function filterBlogPosts() {
+    const searchTerm = blogSearch ? blogSearch.value.toLowerCase() : '';
+    const category = blogFilter ? blogFilter.value : 'all';
+    
+    blogPosts.forEach(post => {
+        const title = post.querySelector('h4')?.textContent.toLowerCase() || '';
+        const content = post.querySelector('p')?.textContent.toLowerCase() || '';
+        const postCategory = post.getAttribute('data-category') || 'all';
+        
+        const matchesSearch = title.includes(searchTerm) || content.includes(searchTerm);
+        const matchesCategory = category === 'all' || postCategory === category;
+        
+        if (matchesSearch && matchesCategory) {
+            post.style.display = 'block';
+        } else {
+            post.style.display = 'none';
+        }
+    });
+}
+
+if (blogSearch) blogSearch.addEventListener('keyup', filterBlogPosts);
+if (blogFilter) blogFilter.addEventListener('change', filterBlogPosts);
