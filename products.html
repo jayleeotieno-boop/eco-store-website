@@ -1,87 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="EcoStore - Your one-stop shop for sustainable, eco-friendly products">
-<meta name="keywords" content="eco-friendly, sustainable, green products, reusable">
-<meta name="author" content="EcoStore">
-<meta property="og:title" content="EcoStore - Sustainable Living">
-<meta property="og:description" content="Shop eco-friendly products for a sustainable lifestyle">
-
-<button id="darkModeToggle" class="btn btn-outline-light ms-2">🌙 Dark Mode</button>
-
-
-<div id="loadingSpinner" class="spinner"></div>
-
-    <title>Document</title>
-
+    <!-- ===== ADD THESE LINES RIGHT HERE ===== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EcoStore - Your one-stop shop for sustainable, eco-friendly products">
+    <meta name="keywords" content="eco-friendly, sustainable, green products, reusable">
+    <meta name="author" content="EcoStore">
+    <meta property="og:title" content="EcoStore - Sustainable Living">
+    <meta property="og:description" content="Shop eco-friendly products for a sustainable lifestyle">
+    <meta property="og:type" content="website">
+    <meta name="robots" content="index, follow">
+    <!-- ===== END OF ADDED CODE ===== -->
     
+<link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <title>EcoStore - Sustainable Living</title>
+    <!-- rest of head content -->
 </head>
-<body>
-    
-<div class="row mb-4">
-    <div class="col-md-6 mx-auto">
-        <input type="text" id="productSearch" class="form-control" 
-               placeholder=" Search products...">
-    </div>
-</div>
-
-<!-- Shopping Cart Sidebar -->
-<div id="cartSidebar" class="cart-sidebar">
-    <div class="cart-header">
-        <h5>🛒 Your Cart</h5>
-        <button id="closeCartBtn" class="btn-close"></button>
-    </div>
-    <div id="cartItemsList" class="cart-items"></div>
-    <div class="cart-footer">
-        <div class="d-flex justify-content-between">
-            <span>Total:</span>
-            <span id="cartTotalPrice">$0.00</span>
-        </div>
-        <button id="checkoutBtn" class="btn btn-success w-100 mt-2">Checkout</button>
-    </div>
-</div>
-
-<!-- Cart Toggle Button -->
-<button id="cartToggle" class="cart-toggle">
-    🛒 <span id="cartCountBadge">0</span>
-</button>
-    <button id="scrollTopBtn" title="Back to Top">↑</button>
-</body>
-
-<div id="toastContainer" class="toast-container"></div>
-
-<div id="progressBar"></div>
-
-<!-- Floating Action Buttons -->
-<div class="fab-container">
-    <button class="fab" title="Top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-    <button class="fab" title="Contact" onclick="window.location.href='contact.html'">✉</button>
-    <button class="fab" title="Shop" onclick="window.location.href='products.html'">🛒</button>
-</div>
-
-<!-- Add to main content div -->
-<div class="page-transition">
-    <!-- content -->
-</div>
-
-<!-- Rating Stars -->
-<div class="rating">
-    <span class="star-${id}" onclick="setRating(${id}, 1)">★</span>
-    <span class="star-${id}" onclick="setRating(${id}, 2)">★</span>
-    <span class="star-${id}" onclick="setRating(${id}, 3)">★</span>
-    <span class="star-${id}" onclick="setRating(${id}, 4)">★</span>
-    <span class="star-${id}" onclick="setRating(${id}, 5)">★</span>
-</div>
-
-
-<!-- Breadcrumb Navigation -->
-<nav aria-label="breadcrumb" class="container mt-3">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Current Page</li>
-    </ol>
-</nav>
-
-</html>

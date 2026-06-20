@@ -1,0 +1,16 @@
+{
+    "name": "EcoStore - Sustainable Living",
+    "short_name": "EcoStore",
+    "description": "Shop eco-friendly products for a sustainable lifestyle",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#4CAF50",
+    "icons": [
+        {
+            "src": "icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ]
+}

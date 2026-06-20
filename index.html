@@ -1,107 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- ===== ADD THESE LINES RIGHT HERE ===== -->
     <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="EcoStore - Your one-stop shop for sustainable, eco-friendly products">
-<meta name="keywords" content="eco-friendly, sustainable, green products, reusable">
-<meta name="author" content="EcoStore">
-<meta property="og:title" content="EcoStore - Sustainable Living">
-<meta property="og:description" content="Shop eco-friendly products for a sustainable lifestyle">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EcoStore - Your one-stop shop for sustainable, eco-friendly products">
+    <meta name="keywords" content="eco-friendly, sustainable, green products, reusable">
+    <meta name="author" content="EcoStore">
+    <meta property="og:title" content="EcoStore - Sustainable Living">
+    <meta property="og:description" content="Shop eco-friendly products for a sustainable lifestyle">
+    <meta property="og:type" content="website">
+    <meta name="robots" content="index, follow">
+    <!-- ===== END OF ADDED CODE ===== -->
+    
+<link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-<button id="darkModeToggle" class="btn btn-outline-light ms-2">🌙 Dark Mode</button>
-    <title>Document</title>
+    <title>EcoStore - Sustainable Living</title>
+    <!-- rest of head content -->
 </head>
-<body>
-   <button id="scrollTopBtn" title="Back to Top">↑</button> 
-</body>
-
-<div id="toastContainer" class="toast-container"></div>
-
-
-<!-- Newsletter Popup -->
-<div id="newsletterPopup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:9999; justify-content:center; align-items:center;">
-    <div class="popup-content bg-white p-5 rounded shadow" style="max-width:400px; position:relative;">
-        <button onclick="closeNewsletterPopup()" style="position:absolute; top:10px; right:15px; border:none; background:none; font-size:24px;">×</button>
-        <h3 class="text-center">🌿 Join Our Community</h3>
-        <p class="text-center">Get 10% off your first order!</p>
-        <form id="popupNewsletterForm">
-            <input type="email" id="popupEmail" class="form-control mb-2" placeholder="Your email" required>
-            <button type="submit" class="btn btn-success w-100">Subscribe</button>
-        </form>
-    </div>
-</div>
-
-<div id="progressBar"></div>
-
-<!-- Floating Action Buttons -->
-<div class="fab-container">
-    <button class="fab" title="Top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-    <button class="fab" title="Contact" onclick="window.location.href='contact.html'">✉</button>
-    <button class="fab" title="Shop" onclick="window.location.href='products.html'">🛒</button>
-</div>
-
-<!-- Product Carousel -->
-<section class="container my-5">
-    <h2 class="text-center mb-4">Featured Products</h2>
-    <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=300" 
-                                 class="card-img-top" alt="Bamboo Toothbrush">
-                            <div class="card-body">
-                                <h5>Bamboo Toothbrush</h5>
-                                <p class="text-success">$4.99</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img src="https://images.unsplash.com/photo-1610707219829-5b3f8c1d5f2e?w=300" 
-                                 class="card-img-top" alt="Reusable Bags">
-                            <div class="card-body">
-                                <h5>Reusable Shopping Bags</h5>
-                                <p class="text-success">$12.99</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img src="https://images.unsplash.com/photo-1583947583497-9b8c3b8b3f1e?w=300" 
-                                 class="card-img-top" alt="Water Bottle">
-                            <div class="card-body">
-                                <h5>Stainless Steel Bottle</h5>
-                                <p class="text-success">$24.99</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </button>
-    </div>
-
-<!-- Add to main content div -->
-<div class="page-transition">
-    <!-- content -->
-</div>
-
-</section>
-
-<!-- Breadcrumb Navigation -->
-<nav aria-label="breadcrumb" class="container mt-3">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Current Page</li>
-    </ol>
-</nav>
-
-</html>
