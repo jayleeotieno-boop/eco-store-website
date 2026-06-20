@@ -425,3 +425,31 @@ function shareOnSocial(platform, url, title) {
     window.open(shareUrls[platform], '_blank', 'width=600,height=400');
 }
 
+
+// Star Rating System
+function setRating(productId, rating) {
+    localStorage.setItem(`rating-${productId}`, rating);
+    updateStars(productId, rating);
+}
+
+function updateStars(productId, rating) {
+    const stars = document.querySelectorAll(`.star-${productId}`);
+    stars.forEach((star, index) => {
+        if (index < rating) {
+            star.classList.add('text-warning');
+            star.classList.remove('text-muted');
+        } else {
+            star.classList.add('text-muted');
+            star.classList.remove('text-warning');
+        }
+    });
+}
+
+// Initialize ratings
+document.querySelectorAll('.product-item').forEach(item => {
+    const id = item.dataset.productId;
+    const savedRating = localStorage.getItem(`rating-${id}`);
+    if (savedRating) {
+        updateStars(id, parseInt(savedRating));
+    }
+});
