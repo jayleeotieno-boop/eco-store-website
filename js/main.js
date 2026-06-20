@@ -453,3 +453,36 @@ document.querySelectorAll('.product-item').forEach(item => {
         updateStars(id, parseInt(savedRating));
     }
 });
+
+// Wishlist
+let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+
+function toggleWishlist(productId, productName) {
+    const index = wishlist.indexOf(productId);
+    if (index > -1) {
+        wishlist.splice(index, 1);
+        showToast(`${productName} removed from wishlist ❤️`, 'info');
+    } else {
+        wishlist.push(productId);
+        showToast(`${productName} added to wishlist ❤️`, 'success');
+    }
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    updateWishlistButtons();
+}
+
+function isInWishlist(productId) {
+    return wishlist.includes(productId);
+}
+
+function updateWishlistButtons() {
+    document.querySelectorAll('.wishlist-btn').forEach(btn => {
+        const id = btn.dataset.productId;
+        if (isInWishlist(id)) {
+            btn.classList.add('text-danger');
+            btn.textContent = '❤️';
+        } else {
+            btn.classList.remove('text-danger');
+            btn.textContent = '🤍';
+        }
+    });
+}
