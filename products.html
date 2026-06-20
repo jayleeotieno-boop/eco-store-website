@@ -56,3 +56,35 @@
         <li class="breadcrumb-item active" aria-current="page">Products</li>
     </ol>
 </nav>
+
+
+<div class="fab-container">
+        <button class="fab" title="Top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+        <button class="fab" title="Contact" onclick="window.location.href='contact.html'">✉</button>
+        <button class="fab" title="Shop" onclick="window.location.href='products.html'">🛒</button>
+    </div>
+    
+    <button id="scrollTopBtn" title="Back to Top">↑</button>
+
+
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h5>🛒 Your Cart</h5>
+            <button id="closeCartBtn" class="btn-close"></button>
+        </div>
+        <div id="cartItemsList" class="cart-items"></div>
+        <div class="cart-footer">
+            <div class="d-flex justify-content-between">
+                <span>Total:</span>
+                <span id="cartTotalPrice">$0.00</span>
+            </div>
+            <button id="checkoutBtn" class="btn btn-success w-100 mt-2">Checkout</button>
+            <button id="clearCartBtn" class="btn btn-danger w-100 mt-2">Clear Cart</button>
+        </div>
+    </div>
+
+    <button id="cartToggle" class="cart-toggle">
+        🛒 <span id="cartCountBadge">0</span>
+    </button>
+
+
