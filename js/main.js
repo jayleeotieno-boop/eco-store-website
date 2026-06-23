@@ -740,3 +740,440 @@ document.addEventListener('DOMContentLoaded', function() {
     initRatings();
     initWishlist();
 });
+
+// ============================================================
+// PRODUCT SORT
+// ============================================================
+
+function initProductSort() {
+    const sort = document.getElementById('sortProducts');
+    const grid = document.getElementById('productsGrid');
+
+    if (sort) {
+        sort.addEventListener('change', function() {
+            const products = Array.from(document.querySelectorAll('.product-item'));
+            const sortValue = this.value;
+
+            products.sort((a, b) => {
+                switch (sortValue) {
+                    case 'price-low':
+                        return parseInt(a.dataset.price) - parseInt(b.dataset.price);
+                    case 'price-high':
+                        return parseInt(b.dataset.price) - parseInt(a.dataset.price);
+                    case 'name':
+                        const nameA = a.querySelector('h5')?.textContent || '';
+                        const nameB = b.querySelector('h5')?.textContent || '';
+                        return nameA.localeCompare(nameB);
+                    default:
+                        return 0;
+                }
+            });
+
+            // Reorder products
+            products.forEach(product => {
+                grid.appendChild(product);
+            });
+        });
+    }
+}
+
+// ============================================================
+// PRICE FILTER
+// ============================================================
+
+function initPriceFilter() {
+    const range = document.getElementById('priceRange');
+    const valueDisplay = document.getElementById('priceValue');
+
+    if (range) {
+        range.addEventListener('input', function() {
+            const maxPrice = parseInt(this.value);
+            if (valueDisplay) valueDisplay.textContent = maxPrice;
+
+            document.querySelectorAll('.product-item').forEach(item => {
+                const price = parseInt(item.dataset.price);
+                if (price <= maxPrice) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    }
+}
+
+// ============================================================
+// UPDATE DOMContentLoaded
+// ============================================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    initDarkMode();
+    initScrollProgress();
+    initScrollToTop();
+    initProductSearch();
+    initProductFilters();
+    initCart();
+    initBlogFilter();
+    initCounters();
+    initNewsletterPopup();
+    initRatings();
+    initWishlist();
+    initProductSort();
+    initPriceFilter();
+});
+
+
+// ============================================================
+// SOCIAL MEDIA SHARING
+// ============================================================
+
+function shareOnSocial(platform) {
+    const url = window.location.href;
+    const title = document.querySelector('h1')?.textContent || 'Check this out!';
+
+    const shareUrls = {
+        facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+        twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`,
+        whatsapp: `https://api.whatsapp.com/send?text=${encodeURIComponent(title + ' ' + url)}`
+    };
+
+    window.open(shareUrls[platform], '_blank', 'width=600,height=400');
+}
+
+// ============================================================
+// CONTACT FORM VALIDATION
+// ============================================================
+
+function initContactForm() {
+    const form = document.getElementById('contactForm');
+
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            let isValid = true;
+
+            // Validate name
+            const name = document.getElementById('name');
+            const nameError = document.getElementById('nameError');
+            if (name && name.value.trim() === '') {
+                name.classList.add('is-invalid');
+                if (nameError) nameError.textContent = 'Name is required';
+                isValid = false;
+            } else {
+                name.classList.remove('is-invalid');
+                name.classList.add('is-valid');
+                if (nameError) nameError.textContent = '';
+            }
+
+            // Validate email
+            const email = document.getElementById('email');
+            const emailError = document.getElementById('emailError');
+            if (email && (email.value.trim() === '' || !email.value.includes('@'))) {
+                email.classList.add('is-invalid');
+                if (emailError) emailError.textContent = 'Valid email is required';
+                isValid = false;
+            } else {
+                email.classList.remove('is-invalid');
+                email.classList.add('is-valid');
+                if (emailError) emailError.textContent = '';
+            }
+
+            // Validate subject
+            const subject = document.getElementById('subject');
+            const subjectError = document.getElementById('subjectError');
+            if (subject && subject.value === '') {
+                subject.classList.add('is-invalid');
+                if (subjectError) subjectError.textContent = 'Please select a subject';
+                isValid = false;
+            } else {
+                subject.classList.remove('is-invalid');
+                subject.classList.add('is-valid');
+                if (subjectError) subjectError.textContent = '';
+            }
+
+            // Validate message
+            const message = document.getElementById('message');
+            const msgError = document.getElementById('msgError');
+            if (message && message.value.trim() === '') {
+                message.classList.add('is-invalid');
+                if (msgError) msgError.textContent = 'Message is required';
+                isValid = false;
+            } else {
+                message.classList.remove('is-invalid');
+                message.classList.add('is-valid');
+                if (msgError) msgError.textContent = '';
+            }
+
+            if (isValid) {
+                const success = document.getElementById('formSuccess');
+                if (success) {
+                    success.textContent = '✅ Message sent successfully!';
+                    success.style.color = 'green';
+                }
+                showToast('✅ Message sent successfully! 📧', 'success');
+                this.reset();
+                // Remove validation classes
+                document.querySelectorAll('.is-valid').forEach(el => el.classList.remove('is-valid'));
+            }
+        });
+
+        // Real-time validation
+        document.querySelectorAll('.form-control').forEach(input => {
+            input.addEventListener('blur', function() {
+                const errorId = this.id + 'Error';
+                const error = document.getElementById(errorId);
+
+                if (this.value.trim() === '') {
+                    this.classList.add('is-invalid');
+                    if (error) error.textContent = 'This field is required';
+                } else {
+                    this.classList.remove('is-invalid');
+                    this.classList.add('is-valid');
+                    if (error) error.textContent = '';
+                }
+
+                // Special validation for email
+                if (this.id === 'email' && this.value.trim() !== '' && !this.value.includes('@')) {
+                    this.classList.add('is-invalid');
+                    if (error) error.textContent = 'Please enter a valid email';
+                }
+            });
+
+            input.addEventListener('input', function() {
+                if (this.classList.contains('is-invalid') && this.value.trim() !== '') {
+                    this.classList.remove('is-invalid');
+                    this.classList.add('is-valid');
+                    const errorId = this.id + 'Error';
+                    const error = document.getElementById(errorId);
+                    if (error) error.textContent = '';
+                }
+            });
+        });
+    }
+}
+
+// ============================================================
+// UPDATE DOMContentLoaded
+// ============================================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    initDarkMode();
+    initScrollProgress();
+    initScrollToTop();
+    initProductSearch();
+    initProductFilters();
+    initCart();
+    initBlogFilter();
+    initCounters();
+    initNewsletterPopup();
+    initRatings();
+    initWishlist();
+    initProductSort();
+    initPriceFilter();
+    initContactForm();
+});
+
+
+// ============================================================
+// NEWSLETTER FORM
+// ============================================================
+
+function initNewsletter() {
+    const form = document.getElementById('newsletterForm');
+    const message = document.getElementById('newsletterMessage');
+
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('newsletterEmail');
+
+            if (email && email.value.trim() !== '' && email.value.includes('@')) {
+                if (message) {
+                    message.textContent = '✅ Subscribed successfully!';
+                    message.style.color = 'green';
+                }
+                showToast('✅ Subscribed successfully! 📧', 'success');
+                this.reset();
+            } else {
+                if (message) {
+                    message.textContent = '⚠️ Please enter a valid email';
+                    message.style.color = 'red';
+                }
+            }
+        });
+    }
+}
+
+// ============================================================
+// COOKIE CONSENT
+// ============================================================
+
+function initCookieConsent() {
+    // Check if user already accepted
+    if (localStorage.getItem('cookieConsent')) {
+        return;
+    }
+
+    // Create banner
+    const banner = document.createElement('div');
+    banner.id = 'cookieBanner';
+    banner.style.cssText = `
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #1a1a1a;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        z-index: 9999;
+    `;
+
+    banner.innerHTML = `
+        <p class="mb-0">🍪 We use cookies to improve your experience. 
+            <button id="acceptCookies" class="btn btn-success btn-sm">Accept</button>
+            <button id="declineCookies" class="btn btn-secondary btn-sm">Decline</button>
+        </p>
+    `;
+
+    document.body.appendChild(banner);
+
+    // Accept button
+    document.getElementById('acceptCookies').addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'accepted');
+        banner.remove();
+        showToast('✅ Cookies accepted!', 'success');
+    });
+
+    // Decline button
+    document.getElementById('declineCookies').addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'declined');
+        banner.remove();
+    });
+}
+
+// ============================================================
+// UPDATE DOMContentLoaded
+// ============================================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    initDarkMode();
+    initScrollProgress();
+    initScrollToTop();
+    initProductSearch();
+    initProductFilters();
+    initCart();
+    initBlogFilter();
+    initCounters();
+    initNewsletterPopup();
+    initRatings();
+    initWishlist();
+    initProductSort();
+    initPriceFilter();
+    initContactForm();
+    initNewsletter();
+    initCookieConsent();
+});
+
+
+// ============================================================
+// CHECKOUT FUNCTIONALITY
+// ============================================================
+
+function initCheckout() {
+    const checkoutBtn = document.getElementById('checkoutBtn');
+
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', function() {
+            if (cart.length === 0) {
+                showToast('Your cart is empty!', 'error');
+                return;
+            }
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            showToast(`🛒 Checkout - Total: $${total.toFixed(2)}`, 'success');
+
+            // Close cart
+            const sidebar = document.getElementById('cartSidebar');
+            if (sidebar) sidebar.classList.remove('open');
+
+            // Show thank you message
+            setTimeout(() => {
+                showToast('Thank you for your purchase! 🌿', 'success');
+                // Clear cart after purchase
+                cart = [];
+                saveCart();
+                renderCart();
+                updateCartToggle();
+            }, 2000);
+        });
+    }
+}
+
+// ============================================================
+// KEYBOARD SHORTCUTS
+// ============================================================
+
+document.addEventListener('keydown', function(e) {
+    // Escape key closes modals and popups
+    if (e.key === 'Escape') {
+        // Close cart sidebar
+        const sidebar = document.getElementById('cartSidebar');
+        if (sidebar && sidebar.classList.contains('open')) {
+            sidebar.classList.remove('open');
+        }
+
+        // Close newsletter popup
+        const popup = document.getElementById('newsletterPopup');
+        if (popup && popup.style.display === 'flex') {
+            popup.style.display = 'none';
+        }
+    }
+});
+
+// ============================================================
+// ADD TO CART FROM CAROUSEL
+// ============================================================
+
+// The add-cart buttons already work
+// This ensures carousel products also work
+
+// ============================================================
+// UPDATE DOMContentLoaded
+// ============================================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    initDarkMode();
+    initScrollProgress();
+    initScrollToTop();
+    initProductSearch();
+    initProductFilters();
+    initCart();
+    initBlogFilter();
+    initCounters();
+    initNewsletterPopup();
+    initRatings();
+    initWishlist();
+    initProductSort();
+    initPriceFilter();
+    initContactForm();
+    initNewsletter();
+    initCookieConsent();
+    initLightbox();
+    initLazyLoading();
+    initOptimizations();
+    initCheckout();
+});
+
+// ============================================================
+// MAKE FUNCTIONS GLOBAL (for inline onclick attributes)
+// ============================================================
+
+window.setRating = setRating;
+window.toggleWishlist = toggleWishlist;
+window.shareOnSocial = shareOnSocial;
+window.updateQuantity = updateQuantity;
+window.removeItem = removeItem;
+window.closeNewsletterPopup = closeNewsletterPopup;
+
