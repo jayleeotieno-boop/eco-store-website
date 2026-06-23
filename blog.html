@@ -22,6 +22,50 @@
 
 <body>
     
+<h1 class="text-center mb-4">📰 Eco Living Blog</h1>
+<p class="text-center mb-4">Tips, tricks, and stories for sustainable living</p>
+
+<div class="card-body">
+    <h4>🌱 10 Easy Ways to Reduce Plastic</h4>
+    <p class="text-muted">June 15, 2026 | Sustainability</p>
+    <p>Start with reusable bags, water bottles, and saying no to straws.</p>
+    
+    <!-- ===== ADD THIS RIGHT HERE ===== -->
+    <div class="share-buttons mt-2">
+        <button onclick="shareOnSocial('facebook')" class="btn btn-primary btn-sm">📘</button>
+        <button onclick="shareOnSocial('twitter')" class="btn btn-info btn-sm">🐦</button>
+        <button onclick="shareOnSocial('whatsapp')" class="btn btn-success btn-sm">💬</button>
+    </div>
+    <!-- ===== END OF ADDED CODE ===== -->
+    
+    <a href="#" class="btn btn-outline-success btn-sm mt-2">Read More</a>
+</div>
+
+<!-- ===== ADD THIS RIGHT HERE ===== -->
+<div class="row mb-4">
+    <div class="col-md-6">
+        <input type="text" id="blogSearch" class="form-control" placeholder="🔍 Search blog posts...">
+    </div>
+    <div class="col-md-6">
+        <select id="blogFilter" class="form-select">
+            <option value="all">All Categories</option>
+            <option value="sustainability">Sustainability</option>
+            <option value="tips">Eco Tips</option>
+            <option value="products">Products</option>
+        </select>
+    </div>
+</div>
+<!-- ===== END OF ADDED CODE ===== -->
+
+<!-- Blog Posts -->
+<div class="row">
+    <!-- blog posts -->
+</div>
+
+<div class="col-md-6 blog-post" data-category="sustainability">
+    <!-- blog content -->
+</div>
+
     <div id="toastContainer" class="toast-container"></div>
     <div id="progressBar"></div>
 
