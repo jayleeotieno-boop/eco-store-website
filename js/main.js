@@ -1,22 +1,37 @@
 // ============================================================
-// DOCUMENT READY - Wait for page to load
+// DOCUMENT READY
 // ============================================================
 
 document.addEventListener('DOMContentLoaded', function() {
     initDarkMode();
     initScrollProgress();
     initScrollToTop();
+    initProductSearch();
+    initProductFilters();
+    initCart();
+    initBlogFilter();
+    initCounters();
+    initNewsletterPopup();
+    initRatings();
+    initWishlist();
+    initProductSort();
+    initPriceFilter();
+    initContactForm();
+    initNewsletter();
+    initCookieConsent();
+    initLightbox();
+    initLazyLoading();
+    initCheckout();
 });
 
 // ============================================================
-// DARK MODE TOGGLE
+// DARK MODE
 // ============================================================
 
 function initDarkMode() {
     const toggle = document.getElementById('darkModeToggle');
     const body = document.body;
 
-    // Check saved preference
     if (localStorage.getItem('darkMode') === 'enabled') {
         body.classList.add('dark-mode');
         if (toggle) toggle.textContent = '☀️';
@@ -25,7 +40,6 @@ function initDarkMode() {
     if (toggle) {
         toggle.addEventListener('click', function() {
             body.classList.toggle('dark-mode');
-
             if (body.classList.contains('dark-mode')) {
                 localStorage.setItem('darkMode', 'enabled');
                 this.textContent = '☀️';
@@ -38,17 +52,15 @@ function initDarkMode() {
 }
 
 // ============================================================
-// SCROLL PROGRESS BAR
+// SCROLL PROGRESS
 // ============================================================
 
 function initScrollProgress() {
     const bar = document.getElementById('progressBar');
-
     window.addEventListener('scroll', function() {
         const scrollTop = window.scrollY;
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
         const progress = (scrollTop / docHeight) * 100;
-
         if (bar) {
             bar.style.width = progress + '%';
             bar.style.opacity = progress > 0 ? '1' : '0';
@@ -57,12 +69,11 @@ function initScrollProgress() {
 }
 
 // ============================================================
-// SCROLL TO TOP BUTTON
+// SCROLL TO TOP
 // ============================================================
 
 function initScrollToTop() {
     const btn = document.getElementById('scrollTopBtn');
-
     window.addEventListener('scroll', function() {
         if (window.scrollY > 300) {
             btn.style.display = 'block';
@@ -74,117 +85,6 @@ function initScrollToTop() {
             }, 300);
         }
     });
-
-    if (btn) {
-        btn.addEventListener('click', function() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    }
-}
-
-// Dark Mode Toggle
-const darkModeToggle = document.getElementById('darkModeToggle');
-const body = document.body;
-
-// Check saved preference
-if (localStorage.getItem('darkMode') === 'enabled') {
-    body.classList.add('dark-mode');
-    if (darkModeToggle) darkModeToggle.textContent = '☀️ Light Mode';
-}
-
-if (darkModeToggle) {
-    darkModeToggle.addEventListener('click', function() {
-        body.classList.toggle('dark-mode');
-        
-        if (body.classList.contains('dark-mode')) {
-            localStorage.setItem('darkMode', 'enabled');
-            this.textContent = '☀️ Light Mode';
-        } else {
-            localStorage.setItem('darkMode', 'disabled');
-            this.textContent = '🌙 Dark Mode';
-        }
-    });
-}
-
-
-
-// ============================================================
-// DOCUMENT READY - Wait for page to load
-// ============================================================
-
-document.addEventListener('DOMContentLoaded', function() {
-    initDarkMode();
-    initScrollProgress();
-    initScrollToTop();
-});
-
-// ============================================================
-// DARK MODE TOGGLE
-// ============================================================
-
-function initDarkMode() {
-    const toggle = document.getElementById('darkModeToggle');
-    const body = document.body;
-
-    // Check saved preference
-    if (localStorage.getItem('darkMode') === 'enabled') {
-        body.classList.add('dark-mode');
-        if (toggle) toggle.textContent = '☀️';
-    }
-
-    if (toggle) {
-        toggle.addEventListener('click', function() {
-            body.classList.toggle('dark-mode');
-
-            if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('darkMode', 'enabled');
-                this.textContent = '☀️';
-            } else {
-                localStorage.setItem('darkMode', 'disabled');
-                this.textContent = '🌙';
-            }
-        });
-    }
-}
-
-// ============================================================
-// SCROLL PROGRESS BAR
-// ============================================================
-
-function initScrollProgress() {
-    const bar = document.getElementById('progressBar');
-
-    window.addEventListener('scroll', function() {
-        const scrollTop = window.scrollY;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = (scrollTop / docHeight) * 100;
-
-        if (bar) {
-            bar.style.width = progress + '%';
-            bar.style.opacity = progress > 0 ? '1' : '0';
-        }
-    });
-}
-
-// ============================================================
-// SCROLL TO TOP BUTTON
-// ============================================================
-
-function initScrollToTop() {
-    const btn = document.getElementById('scrollTopBtn');
-
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 300) {
-            btn.style.display = 'block';
-            btn.style.opacity = '1';
-        } else {
-            btn.style.opacity = '0';
-            setTimeout(() => {
-                if (window.scrollY <= 300) btn.style.display = 'none';
-            }, 300);
-        }
-    });
-
     if (btn) {
         btn.addEventListener('click', function() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -203,26 +103,35 @@ function initProductSearch() {
     if (search) {
         search.addEventListener('keyup', function() {
             const term = this.value.toLowerCase().trim();
-
             products.forEach(product => {
                 const name = product.querySelector('h5')?.textContent.toLowerCase() || '';
                 const desc = product.querySelector('p')?.textContent.toLowerCase() || '';
-
                 if (name.includes(term) || desc.includes(term)) {
                     product.style.display = 'block';
                 } else {
                     product.style.display = 'none';
                 }
             });
-
-            // Add to search history
             if (term) addToSearchHistory(term);
         });
     }
 }
 
 // ============================================================
-// PRODUCT FILTER BY CATEGORY
+// SEARCH HISTORY
+// ============================================================
+
+let searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
+
+function addToSearchHistory(term) {
+    searchHistory = searchHistory.filter(item => item !== term);
+    searchHistory.unshift(term);
+    if (searchHistory.length > 10) searchHistory.pop();
+    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+}
+
+// ============================================================
+// PRODUCT FILTERS
 // ============================================================
 
 function initProductFilters() {
@@ -231,14 +140,12 @@ function initProductFilters() {
 
     filterBtns.forEach(btn => {
         btn.addEventListener('click', function() {
-            // Remove active class from all buttons
             filterBtns.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
 
             const filter = this.dataset.filter;
             const spinner = document.getElementById('loadingSpinner');
 
-            // Show spinner
             if (spinner) spinner.style.display = 'block';
 
             setTimeout(() => {
@@ -250,8 +157,6 @@ function initProductFilters() {
                         product.style.display = 'none';
                     }
                 });
-
-                // Hide spinner
                 if (spinner) spinner.style.display = 'none';
             }, 300);
         });
@@ -259,33 +164,14 @@ function initProductFilters() {
 }
 
 // ============================================================
-// CALL ALL FUNCTIONS
-// ============================================================
-
-document.addEventListener('DOMContentLoaded', function() {
-    initDarkMode();
-    initScrollProgress();
-    initScrollToTop();
-    initProductSearch();
-    initProductFilters();
-    // More functions will be added later
-});
-
-// ============================================================
 // SHOPPING CART
 // ============================================================
 
 let cart = [];
-
-// Load cart from localStorage
 const savedCart = localStorage.getItem('ecoCart');
 if (savedCart) {
     cart = JSON.parse(savedCart);
 }
-
-// ============================================================
-// ADD TO CART
-// ============================================================
 
 function initCart() {
     const addButtons = document.querySelectorAll('.add-cart');
@@ -295,7 +181,6 @@ function initCart() {
             const name = this.dataset.name;
             const price = parseFloat(this.dataset.price);
 
-            // Check if item already in cart
             const existingItem = cart.find(item => item.name === name);
 
             if (existingItem) {
@@ -311,7 +196,6 @@ function initCart() {
         });
     });
 
-    // Open/close cart sidebar
     const toggle = document.getElementById('cartToggle');
     const sidebar = document.getElementById('cartSidebar');
     const closeBtn = document.getElementById('closeCartBtn');
@@ -328,7 +212,6 @@ function initCart() {
         });
     }
 
-    // Close cart when clicking outside
     document.addEventListener('click', (e) => {
         if (sidebar && sidebar.classList.contains('open')) {
             if (!sidebar.contains(e.target) && e.target !== toggle) {
@@ -337,7 +220,6 @@ function initCart() {
         }
     });
 
-    // Clear cart
     const clearBtn = document.getElementById('clearCartBtn');
     if (clearBtn) {
         clearBtn.addEventListener('click', function() {
@@ -349,22 +231,13 @@ function initCart() {
         });
     }
 
-    // Render cart on load
     renderCart();
     updateCartToggle();
 }
 
-// ============================================================
-// SAVE CART TO LOCALSTORAGE
-// ============================================================
-
 function saveCart() {
     localStorage.setItem('ecoCart', JSON.stringify(cart));
 }
-
-// ============================================================
-// RENDER CART
-// ============================================================
 
 function renderCart() {
     const cartList = document.getElementById('cartItemsList');
@@ -405,25 +278,15 @@ function renderCart() {
     if (totalPrice) totalPrice.textContent = `$${total.toFixed(2)}`;
 }
 
-// ============================================================
-// UPDATE QUANTITY
-// ============================================================
-
 function updateQuantity(index, change) {
     cart[index].quantity += change;
-
     if (cart[index].quantity <= 0) {
         cart.splice(index, 1);
     }
-
     saveCart();
     renderCart();
     updateCartToggle();
 }
-
-// ============================================================
-// REMOVE ITEM
-// ============================================================
 
 function removeItem(index) {
     const itemName = cart[index].name;
@@ -434,10 +297,6 @@ function removeItem(index) {
     showToast(`${itemName} removed from cart`, 'info');
 }
 
-// ============================================================
-// UPDATE CART TOGGLE
-// ============================================================
-
 function updateCartToggle() {
     const badge = document.getElementById('cartCountBadge');
     if (badge) {
@@ -445,7 +304,6 @@ function updateCartToggle() {
         badge.textContent = totalItems;
     }
 }
-
 
 // ============================================================
 // TOAST NOTIFICATIONS
@@ -455,7 +313,6 @@ function showToast(message, type = 'success') {
     const container = document.getElementById('toastContainer');
 
     if (!container) {
-        // Create container if it doesn't exist
         const newContainer = document.createElement('div');
         newContainer.id = 'toastContainer';
         newContainer.className = 'toast-container';
@@ -469,7 +326,6 @@ function showToast(message, type = 'success') {
 
     container.appendChild(toast);
 
-    // Auto remove after 3 seconds
     setTimeout(() => {
         toast.style.animation = 'slideOutRight 0.3s ease forwards';
         setTimeout(() => {
@@ -479,7 +335,7 @@ function showToast(message, type = 'success') {
 }
 
 // ============================================================
-// BLOG SEARCH AND FILTER
+// BLOG FILTER
 // ============================================================
 
 function initBlogFilter() {
@@ -510,34 +366,6 @@ function initBlogFilter() {
     if (search) search.addEventListener('keyup', filterBlogPosts);
     if (filter) filter.addEventListener('change', filterBlogPosts);
 }
-
-// ============================================================
-// SEARCH HISTORY
-// ============================================================
-
-let searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
-
-function addToSearchHistory(term) {
-    searchHistory = searchHistory.filter(item => item !== term);
-    searchHistory.unshift(term);
-    if (searchHistory.length > 10) searchHistory.pop();
-    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
-}
-
-// ============================================================
-// UPDATE DOMContentLoaded
-// ============================================================
-
-document.addEventListener('DOMContentLoaded', function() {
-    initDarkMode();
-    initScrollProgress();
-    initScrollToTop();
-    initProductSearch();
-    initProductFilters();
-    initCart();
-    initBlogFilter();
-});
-
 
 // ============================================================
 // ANIMATED COUNTERS
@@ -582,12 +410,10 @@ function initCounters() {
 function initNewsletterPopup() {
     const popup = document.getElementById('newsletterPopup');
 
-    // Show after 5 seconds
     setTimeout(() => {
         if (popup) popup.style.display = 'flex';
     }, 5000);
 
-    // Close when clicking outside
     document.addEventListener('click', (e) => {
         if (popup && popup.style.display === 'flex') {
             const content = popup.querySelector('.popup-content');
@@ -597,7 +423,6 @@ function initNewsletterPopup() {
         }
     });
 
-    // Handle form submission
     const form = document.getElementById('popupNewsletterForm');
     if (form) {
         form.addEventListener('submit', function(e) {
@@ -612,42 +437,17 @@ function initNewsletterPopup() {
     }
 }
 
-// ============================================================
-// CLOSE NEWSLETTER POPUP (for the X button)
-// ============================================================
-
 function closeNewsletterPopup() {
     const popup = document.getElementById('newsletterPopup');
     if (popup) popup.style.display = 'none';
 }
 
 // ============================================================
-// UPDATE DOMContentLoaded
-// ============================================================
-
-document.addEventListener('DOMContentLoaded', function() {
-    initDarkMode();
-    initScrollProgress();
-    initScrollToTop();
-    initProductSearch();
-    initProductFilters();
-    initCart();
-    initBlogFilter();
-    initCounters();
-    initNewsletterPopup();
-
-});
-
-
-// ============================================================
 // RATING SYSTEM
 // ============================================================
 
 function initRatings() {
-    // Load saved ratings
     const savedRatings = JSON.parse(localStorage.getItem('productRatings') || '{}');
-
-    // Apply saved ratings
     Object.keys(savedRatings).forEach(productId => {
         const rating = savedRatings[productId];
         updateStars(productId, rating);
@@ -655,12 +455,9 @@ function initRatings() {
 }
 
 function setRating(productId, rating) {
-    // Save rating
     const ratings = JSON.parse(localStorage.getItem('productRatings') || '{}');
     ratings[productId] = rating;
     localStorage.setItem('productRatings', JSON.stringify(ratings));
-
-    // Update display
     updateStars(productId, rating);
     showToast(`⭐ Rated ${rating} stars!`, 'success');
 }
@@ -683,10 +480,7 @@ function updateStars(productId, rating) {
 // ============================================================
 
 function initWishlist() {
-    // Load wishlist
     const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
-
-    // Update wishlist buttons
     document.querySelectorAll('.wishlist-btn').forEach(btn => {
         const id = btn.dataset.productId;
         if (wishlist.includes(id)) {
@@ -710,7 +504,6 @@ function toggleWishlist(productId, productName) {
 
     localStorage.setItem('wishlist', JSON.stringify(wishlist));
 
-    // Update button
     const btn = document.querySelector(`.wishlist-btn[data-product-id="${productId}"]`);
     if (btn) {
         if (wishlist.includes(productId)) {
@@ -722,24 +515,6 @@ function toggleWishlist(productId, productName) {
         }
     }
 }
-
-// ============================================================
-// UPDATE DOMContentLoaded
-// ============================================================
-
-document.addEventListener('DOMContentLoaded', function() {
-    initDarkMode();
-    initScrollProgress();
-    initScrollToTop();
-    initProductSearch();
-    initProductFilters();
-    initCart();
-    initBlogFilter();
-    initCounters();
-    initNewsletterPopup();
-    initRatings();
-    initWishlist();
-});
 
 // ============================================================
 // PRODUCT SORT
@@ -769,7 +544,6 @@ function initProductSort() {
                 }
             });
 
-            // Reorder products
             products.forEach(product => {
                 grid.appendChild(product);
             });
@@ -803,27 +577,6 @@ function initPriceFilter() {
 }
 
 // ============================================================
-// UPDATE DOMContentLoaded
-// ============================================================
-
-document.addEventListener('DOMContentLoaded', function() {
-    initDarkMode();
-    initScrollProgress();
-    initScrollToTop();
-    initProductSearch();
-    initProductFilters();
-    initCart();
-    initBlogFilter();
-    initCounters();
-    initNewsletterPopup();
-    initRatings();
-    initWishlist();
-    initProductSort();
-    initPriceFilter();
-});
-
-
-// ============================================================
 // SOCIAL MEDIA SHARING
 // ============================================================
 
@@ -841,7 +594,7 @@ function shareOnSocial(platform) {
 }
 
 // ============================================================
-// CONTACT FORM VALIDATION
+// CONTACT FORM
 // ============================================================
 
 function initContactForm() {
@@ -853,7 +606,6 @@ function initContactForm() {
 
             let isValid = true;
 
-            // Validate name
             const name = document.getElementById('name');
             const nameError = document.getElementById('nameError');
             if (name && name.value.trim() === '') {
@@ -866,7 +618,6 @@ function initContactForm() {
                 if (nameError) nameError.textContent = '';
             }
 
-            // Validate email
             const email = document.getElementById('email');
             const emailError = document.getElementById('emailError');
             if (email && (email.value.trim() === '' || !email.value.includes('@'))) {
@@ -879,7 +630,6 @@ function initContactForm() {
                 if (emailError) emailError.textContent = '';
             }
 
-            // Validate subject
             const subject = document.getElementById('subject');
             const subjectError = document.getElementById('subjectError');
             if (subject && subject.value === '') {
@@ -892,7 +642,6 @@ function initContactForm() {
                 if (subjectError) subjectError.textContent = '';
             }
 
-            // Validate message
             const message = document.getElementById('message');
             const msgError = document.getElementById('msgError');
             if (message && message.value.trim() === '') {
@@ -913,12 +662,10 @@ function initContactForm() {
                 }
                 showToast('✅ Message sent successfully! 📧', 'success');
                 this.reset();
-                // Remove validation classes
                 document.querySelectorAll('.is-valid').forEach(el => el.classList.remove('is-valid'));
             }
         });
 
-        // Real-time validation
         document.querySelectorAll('.form-control').forEach(input => {
             input.addEventListener('blur', function() {
                 const errorId = this.id + 'Error';
@@ -933,7 +680,6 @@ function initContactForm() {
                     if (error) error.textContent = '';
                 }
 
-                // Special validation for email
                 if (this.id === 'email' && this.value.trim() !== '' && !this.value.includes('@')) {
                     this.classList.add('is-invalid');
                     if (error) error.textContent = 'Please enter a valid email';
@@ -954,29 +700,7 @@ function initContactForm() {
 }
 
 // ============================================================
-// UPDATE DOMContentLoaded
-// ============================================================
-
-document.addEventListener('DOMContentLoaded', function() {
-    initDarkMode();
-    initScrollProgress();
-    initScrollToTop();
-    initProductSearch();
-    initProductFilters();
-    initCart();
-    initBlogFilter();
-    initCounters();
-    initNewsletterPopup();
-    initRatings();
-    initWishlist();
-    initProductSort();
-    initPriceFilter();
-    initContactForm();
-});
-
-
-// ============================================================
-// NEWSLETTER FORM
+// NEWSLETTER
 // ============================================================
 
 function initNewsletter() {
@@ -1010,12 +734,10 @@ function initNewsletter() {
 // ============================================================
 
 function initCookieConsent() {
-    // Check if user already accepted
     if (localStorage.getItem('cookieConsent')) {
         return;
     }
 
-    // Create banner
     const banner = document.createElement('div');
     banner.id = 'cookieBanner';
     banner.style.cssText = `
@@ -1039,14 +761,12 @@ function initCookieConsent() {
 
     document.body.appendChild(banner);
 
-    // Accept button
     document.getElementById('acceptCookies').addEventListener('click', () => {
         localStorage.setItem('cookieConsent', 'accepted');
         banner.remove();
         showToast('✅ Cookies accepted!', 'success');
     });
 
-    // Decline button
     document.getElementById('declineCookies').addEventListener('click', () => {
         localStorage.setItem('cookieConsent', 'declined');
         banner.remove();
@@ -1054,31 +774,81 @@ function initCookieConsent() {
 }
 
 // ============================================================
-// UPDATE DOMContentLoaded
+// LIGHTBOX GALLERY
 // ============================================================
 
-document.addEventListener('DOMContentLoaded', function() {
-    initDarkMode();
-    initScrollProgress();
-    initScrollToTop();
-    initProductSearch();
-    initProductFilters();
-    initCart();
-    initBlogFilter();
-    initCounters();
-    initNewsletterPopup();
-    initRatings();
-    initWishlist();
-    initProductSort();
-    initPriceFilter();
-    initContactForm();
-    initNewsletter();
-    initCookieConsent();
-});
+function initLightbox() {
+    const images = document.querySelectorAll('.gallery-img, .product-img');
 
+    images.forEach(img => {
+        img.addEventListener('click', function() {
+            let lightbox = document.getElementById('lightbox');
+
+            if (!lightbox) {
+                lightbox = document.createElement('div');
+                lightbox.id = 'lightbox';
+                lightbox.style.cssText = `
+                    display: none;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0,0,0,0.9);
+                    z-index: 9999;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                `;
+
+                const img = document.createElement('img');
+                img.id = 'lightboxImg';
+                img.style.cssText = `
+                    max-width: 90%;
+                    max-height: 90%;
+                    object-fit: contain;
+                `;
+
+                lightbox.appendChild(img);
+                document.body.appendChild(lightbox);
+
+                lightbox.addEventListener('click', () => {
+                    lightbox.style.display = 'none';
+                });
+            }
+
+            const lightboxImg = document.getElementById('lightboxImg');
+            lightboxImg.src = this.src;
+            lightbox.style.display = 'flex';
+        });
+    });
+}
 
 // ============================================================
-// CHECKOUT FUNCTIONALITY
+// LAZY LOADING
+// ============================================================
+
+function initLazyLoading() {
+    if ('IntersectionObserver' in window) {
+        const images = document.querySelectorAll('img[data-src]');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.add('fade-in');
+                    observer.unobserve(img);
+                }
+            });
+        });
+
+        images.forEach(img => observer.observe(img));
+    }
+}
+
+// ============================================================
+// CHECKOUT
 // ============================================================
 
 function initCheckout() {
@@ -1094,14 +864,11 @@ function initCheckout() {
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             showToast(`🛒 Checkout - Total: $${total.toFixed(2)}`, 'success');
 
-            // Close cart
             const sidebar = document.getElementById('cartSidebar');
             if (sidebar) sidebar.classList.remove('open');
 
-            // Show thank you message
             setTimeout(() => {
                 showToast('Thank you for your purchase! 🌿', 'success');
-                // Clear cart after purchase
                 cart = [];
                 saveCart();
                 renderCart();
@@ -1116,15 +883,12 @@ function initCheckout() {
 // ============================================================
 
 document.addEventListener('keydown', function(e) {
-    // Escape key closes modals and popups
     if (e.key === 'Escape') {
-        // Close cart sidebar
         const sidebar = document.getElementById('cartSidebar');
         if (sidebar && sidebar.classList.contains('open')) {
             sidebar.classList.remove('open');
         }
 
-        // Close newsletter popup
         const popup = document.getElementById('newsletterPopup');
         if (popup && popup.style.display === 'flex') {
             popup.style.display = 'none';
@@ -1133,41 +897,7 @@ document.addEventListener('keydown', function(e) {
 });
 
 // ============================================================
-// ADD TO CART FROM CAROUSEL
-// ============================================================
-
-// The add-cart buttons already work
-// This ensures carousel products also work
-
-// ============================================================
-// UPDATE DOMContentLoaded
-// ============================================================
-
-document.addEventListener('DOMContentLoaded', function() {
-    initDarkMode();
-    initScrollProgress();
-    initScrollToTop();
-    initProductSearch();
-    initProductFilters();
-    initCart();
-    initBlogFilter();
-    initCounters();
-    initNewsletterPopup();
-    initRatings();
-    initWishlist();
-    initProductSort();
-    initPriceFilter();
-    initContactForm();
-    initNewsletter();
-    initCookieConsent();
-    initLightbox();
-    initLazyLoading();
-    initOptimizations();
-    initCheckout();
-});
-
-// ============================================================
-// MAKE FUNCTIONS GLOBAL (for inline onclick attributes)
+// MAKE FUNCTIONS GLOBAL
 // ============================================================
 
 window.setRating = setRating;
@@ -1176,4 +906,3 @@ window.shareOnSocial = shareOnSocial;
 window.updateQuantity = updateQuantity;
 window.removeItem = removeItem;
 window.closeNewsletterPopup = closeNewsletterPopup;
-

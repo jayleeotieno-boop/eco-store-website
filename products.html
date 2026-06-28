@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- ===== ADD THESE LINES RIGHT HERE ===== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="EcoStore - Your one-stop shop for sustainable, eco-friendly products">
@@ -11,100 +10,262 @@
     <meta property="og:description" content="Shop eco-friendly products for a sustainable lifestyle">
     <meta property="og:type" content="website">
     <meta name="robots" content="index, follow">
-    <!-- ===== END OF ADDED CODE ===== -->
     
-<link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-
-    <title>EcoStore - Sustainable Living</title>
-    <!-- rest of head content -->
+    
+    <title>Products - EcoStore</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    
-
-    
+    <!-- Toast Container -->
     <div id="toastContainer" class="toast-container"></div>
     <div id="progressBar"></div>
-    
+
+    <!-- NAVIGATION  -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="index.html">
-            <i class="fas fa-leaf me-2"></i>EcoStore
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        
-        <div class="collapse navbar-collapse" id="navMenu">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
-                <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-                <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
-                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-            </ul>
-
-            <h1 class="text-center mb-4">🛍️ Our Products</h1>
-<p class="text-center mb-4">Shop our curated collection of sustainable alternatives</p>
-
-            <!-- Search & Sort -->
-<div class="row mb-4">
-    <div class="col-md-4">
-        <input type="text" id="productSearch" class="form-control" placeholder="🔍 Search products...">
-    </div>
-    <div class="col-md-4">
-        <select id="sortProducts" class="form-select">
-            <option value="default">Sort by: Default</option>
-            <option value="price-low">Price: Low to High</option>
-            <option value="price-high">Price: High to Low</option>
-            <option value="name">Name: A-Z</option>
-        </select>
-    </div>
-    <div class="col-md-4">
-        <label>Price: $<span id="priceValue">50</span></label>
-        <input type="range" id="priceRange" min="0" max="100" value="50" class="form-range">
-    </div>
-</div>
-
-<!-- Filter Buttons -->
-<div class="text-center mb-4">
-    <button class="btn btn-outline-success filter-btn active" data-filter="all">All</button>
-    <button class="btn btn-outline-success filter-btn" data-filter="kitchen">Kitchen</button>
-    <button class="btn btn-outline-success filter-btn" data-filter="bathroom">Bathroom</button>
-    <button class="btn btn-outline-success filter-btn" data-filter="on-the-go">On-The-Go</button>
-</div>
-
-
-<!-- Loading Spinner -->
-<div id="loadingSpinner" class="spinner"></div>
-            <!-- ===== ADD THIS LINE RIGHT HERE ===== -->
-            <button id="darkModeToggle" class="btn btn-outline-light ms-2">🌙</button>
-            <!-- ===== END OF ADDED CODE ===== -->
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-leaf me-2"></i>EcoStore
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="products.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+                <button id="darkModeToggle" class="btn btn-outline-light ms-2">🌙</button>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
-<nav aria-label="breadcrumb" class="container mt-5 pt-3">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Products</li>
-    </ol>
-</nav>
+    <!-- BREADCRUMB-->
+    <nav aria-label="breadcrumb" class="container mt-5 pt-3">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Products</li>
+        </ol>
+    </nav>
 
+    <!-- PRODUCTS CONTENT -->
+    <main class="container py-4">
+        <h1 class="text-center mb-4"> Our Products</h1>
+        <p class="text-center mb-4">Shop our curated collection of sustainable alternatives</p>
 
-<div class="fab-container">
-        <button class="fab" title="Top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-        <button class="fab" title="Contact" onclick="window.location.href='contact.html'">✉</button>
-        <button class="fab" title="Shop" onclick="window.location.href='products.html'">🛒</button>
-    </div>
-    
-    <button id="scrollTopBtn" title="Back to Top">↑</button>
+        <!-- Search & Sort -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <input type="text" id="productSearch" class="form-control" placeholder="🔍 Search products...">
+            </div>
+            <div class="col-md-4">
+                <select id="sortProducts" class="form-select">
+                    <option value="default">Sort by: Default</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="name">Name: A-Z</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label>Price: ksh<span id="priceValue">500</span></label>
+                <input type="range" id="priceRange" min="0" max="2500" value="500" class="form-range">
+            </div>
+        </div>
 
+        <!-- Filter Buttons -->
+        <div class="text-center mb-4">
+            <button class="btn btn-outline-success filter-btn active" data-filter="all">All</button>
+            <button class="btn btn-outline-success filter-btn" data-filter="kitchen">Kitchen</button>
+            <button class="btn btn-outline-success filter-btn" data-filter="bathroom">Bathroom</button>
+            <button class="btn btn-outline-success filter-btn" data-filter="on-the-go">On-The-Go</button>
+        </div>
 
+        <!-- Loading Spinner -->
+        <div id="loadingSpinner" class="spinner"></div>
+
+        <!-- Product Grid -->
+        <div class="row" id="productsGrid">
+            <!-- Product 1 -->
+            <div class="col-md-4 product-item" data-cat="bathroom" data-price="4.99" data-product-id="1">
+                <div class="card product-card h-100">
+                     <img src="images2/bamboo-toothbrush.jpg" 
+                         class="card-img-top product-img" alt="Bamboo Toothbrush">
+                    <div class="card-body text-center">
+                        <h5>Bamboo Toothbrush</h5>
+                        <p class="text-muted">Biodegradable bamboo handle</p>
+                        <div class="rating">
+                            <span class="star star-1" onclick="setRating(1, 1)">★</span>
+                            <span class="star star-1" onclick="setRating(1, 2)">★</span>
+                            <span class="star star-1" onclick="setRating(1, 3)">★</span>
+                            <span class="star star-1" onclick="setRating(1, 4)">★</span>
+                            <span class="star star-1" onclick="setRating(1, 5)">★</span>
+                        </div>
+                        <p class="text-success fw-bold">ksh 500</p>
+                        <button class="btn btn-success w-100 add-cart" 
+                                data-name="Bamboo Toothbrush" data-price="500">
+                            🛒 Add to Cart
+                        </button>
+                        <button class="btn btn-outline-danger btn-sm mt-2 wishlist-btn" 
+                                data-product-id="1" onclick="toggleWishlist(1, 'Bamboo Toothbrush')">
+                            🤍
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="col-md-4 product-item" data-cat="on-the-go" data-price="12.99" data-product-id="2">
+                <div class="card product-card h-100">
+                    <img src="images2/reusable-bag.jpg" 
+                         class="card-img-top product-img" alt="Reusable Shopping Bags">
+                    <div class="card-body text-center">
+                        <h5>Reusable Shopping Bags</h5>
+                        <p class="text-muted">Set of 3 cotton mesh bags</p>
+                        <div class="rating">
+                            <span class="star star-2" onclick="setRating(2, 1)">★</span>
+                            <span class="star star-2" onclick="setRating(2, 2)">★</span>
+                            <span class="star star-2" onclick="setRating(2, 3)">★</span>
+                            <span class="star star-2" onclick="setRating(2, 4)">★</span>
+                            <span class="star star-2" onclick="setRating(2, 5)">★</span>
+                        </div>
+                        <p class="text-success fw-bold">ksh 1000</p>
+                        <button class="btn btn-success w-100 add-cart" 
+                                data-name="Reusable Shopping Bags" data-price="1000">
+                            🛒 Add to Cart
+                        </button>
+                        <button class="btn btn-outline-danger btn-sm mt-2 wishlist-btn" 
+                                data-product-id="2" onclick="toggleWishlist(2, 'Reusable Shopping Bags')">
+                            🤍
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="col-md-4 product-item" data-cat="on-the-go" data-price="2500" data-product-id="3">
+                <div class="card product-card h-100">
+                   <img src="images2/steel-waterbottle.jpg" 
+                         class="card-img-top product-img" alt="Stainless Steel Bottle">
+                    <div class="card-body text-center">
+                        <h5>Steel Water Bottle</h5>
+                        <p class="text-muted">Keeps drinks cold 24 hours</p>
+                        <div class="rating">
+                            <span class="star star-3" onclick="setRating(3, 1)">★</span>
+                            <span class="star star-3" onclick="setRating(3, 2)">★</span>
+                            <span class="star star-3" onclick="setRating(3, 3)">★</span>
+                            <span class="star star-3" onclick="setRating(3, 4)">★</span>
+                            <span class="star star-3" onclick="setRating(3, 5)">★</span>
+                        </div>
+                        <p class="text-success fw-bold">ksh 2500</p>
+                        <button class="btn btn-success w-100 add-cart" 
+                                data-name="Stainless Steel Bottle" data-price="2500">
+                            🛒 Add to Cart
+                        </button>
+                        <button class="btn btn-outline-danger btn-sm mt-2 wishlist-btn" 
+                                data-product-id="3" onclick="toggleWishlist(3, 'Stainless Steel Bottle')">
+                            🤍
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="col-md-4 product-item" data-cat="kitchen" data-price="1500" data-product-id="4">
+                <div class="card product-card h-100">
+                    <img src="images2/beeswax-wraps.jpg" 
+                         class="card-img-top product-img" alt="Beeswax Food Wraps">
+                    <div class="card-body text-center">
+                        <h5>Beeswax Food Wraps</h5>
+                        <p class="text-muted">Set of 3 reusable wraps</p>
+                        <div class="rating">
+                            <span class="star star-4" onclick="setRating(4, 1)">★</span>
+                            <span class="star star-4" onclick="setRating(4, 2)">★</span>
+                            <span class="star star-4" onclick="setRating(4, 3)">★</span>
+                            <span class="star star-4" onclick="setRating(4, 4)">★</span>
+                            <span class="star star-4" onclick="setRating(4, 5)">★</span>
+                        </div>
+                        <p class="text-success fw-bold">ksh 1500</p>
+                        <button class="btn btn-success w-100 add-cart" 
+                                data-name="Beeswax Food Wraps" data-price="1500">
+                            🛒 Add to Cart
+                        </button>
+                        <button class="btn btn-outline-danger btn-sm mt-2 wishlist-btn" 
+                                data-product-id="4" onclick="toggleWishlist(4, 'Beeswax Food Wraps')">
+                            🤍
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="col-md-4 product-item" data-cat="bathroom" data-price="1000" data-product-id="5">
+                <div class="card product-card h-100">
+                    <img src="images2/shampoo-bar.jpg"
+                         class="card-img-top product-img" alt="Solid Shampoo Bar">
+                    <div class="card-body text-center">
+                        <h5>Solid Shampoo Bar</h5>
+                        <p class="text-muted">Zero waste hair care</p>
+                        <div class="rating">
+                            <span class="star star-5" onclick="setRating(5, 1)">★</span>
+                            <span class="star star-5" onclick="setRating(5, 2)">★</span>
+                            <span class="star star-5" onclick="setRating(5, 3)">★</span>
+                            <span class="star star-5" onclick="setRating(5, 4)">★</span>
+                            <span class="star star-5" onclick="setRating(5, 5)">★</span>
+                        </div>
+                        <p class="text-success fw-bold">ksh 1000</p>
+                        <button class="btn btn-success w-100 add-cart" 
+                                data-name="Solid Shampoo Bar" data-price="1000">
+                            🛒 Add to Cart
+                        </button>
+                        <button class="btn btn-outline-danger btn-sm mt-2 wishlist-btn" 
+                                data-product-id="5" onclick="toggleWishlist(5, 'Solid Shampoo Bar')">
+                            🤍
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="col-md-4 product-item" data-cat="kitchen" data-price="1500" data-product-id="6">
+                <div class="card product-card h-100">
+                    <img src="images2/compostable-sponges.jpg"
+                         class="card-img-top product-img" alt="Compostable Sponges">
+                    <div class="card-body text-center">
+                        <h5>Compostable Sponges</h5>
+                        <p class="text-muted">6-pack, loofah and cellulose</p>
+                        <div class="rating">
+                            <span class="star star-6" onclick="setRating(6, 1)">★</span>
+                            <span class="star star-6" onclick="setRating(6, 2)">★</span>
+                            <span class="star star-6" onclick="setRating(6, 3)">★</span>
+                            <span class="star star-6" onclick="setRating(6, 4)">★</span>
+                            <span class="star star-6" onclick="setRating(6, 5)">★</span>
+                        </div>
+                        <p class="text-success fw-bold">ksh 1500</p>
+                        <button class="btn btn-success w-100 add-cart" 
+                                data-name="Compostable Sponges" data-price="1500">
+                            🛒 Add to Cart
+                        </button>
+                        <button class="btn btn-outline-danger btn-sm mt-2 wishlist-btn" 
+                                data-product-id="6" onclick="toggleWishlist(6, 'Compostable Sponges')">
+                            🤍
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ========== CART SIDEBAR ========== -->
     <div id="cartSidebar" class="cart-sidebar">
         <div class="cart-header">
             <h5>🛒 Your Cart</h5>
@@ -114,29 +275,57 @@
         <div class="cart-footer">
             <div class="d-flex justify-content-between">
                 <span>Total:</span>
-                <span id="cartTotalPrice">$0.00</span>
+                <span id="cartTotalPrice">ksh 0</span>
             </div>
             <button id="checkoutBtn" class="btn btn-success w-100 mt-2">Checkout</button>
             <button id="clearCartBtn" class="btn btn-danger w-100 mt-2">Clear Cart</button>
         </div>
     </div>
 
-     <div class="rating">
-        <span class="star star-1" onclick="setRating(1, 1)">★</span>
-        <span class="star star-1" onclick="setRating(1, 2)">★</span>
-        <span class="star star-1" onclick="setRating(1, 3)">★</span>
-        <span class="star star-1" onclick="setRating(1, 4)">★</span>
-        <span class="star star-1" onclick="setRating(1, 5)">★</span>
-    </div>
-
-    <button class="btn btn-outline-danger btn-sm mt-2 wishlist-btn" 
-            data-product-id="1" onclick="toggleWishlist(1, 'Bamboo Toothbrush')">
-        🤍
-    </button>
-    
-
     <button id="cartToggle" class="cart-toggle">
         🛒 <span id="cartCountBadge">0</span>
     </button>
 
+    <!-- FOOTER  -->
+    <footer class="footer bg-dark text-white">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5><i class="fas fa-leaf me-2"></i>EcoStore</h5>
+                    <p>Making sustainable living accessible for everyone.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html" class="text-white text-decoration-none">About Us</a></li>
+                        <li><a href="products.html" class="text-white text-decoration-none">Products</a></li>
+                        <li><a href="contact.html" class="text-white text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Follow Us</h5>
+                    <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                </div>
+            </div>
+            <hr class="bg-white">
+            <div class="text-center">
+                <small>&copy; 2026 EcoStore. All rights reserved.</small>
+            </div>
+        </div>
+    </footer>
 
+    <!-- FLOATING ACTION BUTTONS -->
+    <div class="fab-container">
+        <button class="fab" title="Top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+        <button class="fab" title="Contact" onclick="window.location.href='contact.html'">✉</button>
+        <button class="fab" title="Shop" onclick="window.location.href='products.html'">🛒</button>
+    </div>
+    
+    <button id="scrollTopBtn" title="Back to Top">↑</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
